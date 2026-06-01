@@ -14,18 +14,9 @@ defineOptions({
     },
 });
 
-defineProps<{
-    testprop: {
-        message: string
-        value: number
-    }
-}>()
+
 </script>
 
 <template>
     <Head title="Dashboard" />
-
-    <div>
-
-    </div>
 </template>
