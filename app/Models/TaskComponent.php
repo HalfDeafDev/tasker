@@ -5,14 +5,15 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
 
 class TaskComponent extends Model
 {
     //
     use HasUuids;
 
-    public function taskInstance(): BelongsTo
+    public function componentable(): MorphMany
     {
-        return $this->belongsTo(TaskInstance::class);
+        return $this->morphMany('componentable', 'componentable_type');
     }
 }

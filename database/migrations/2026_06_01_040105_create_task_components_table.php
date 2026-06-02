@@ -12,8 +12,17 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('task_components', function (Blueprint $table) {
-            $table->id();
+            $table->uuid()->primary();
+            $table->uuidMorphs('componentable');
+
+            $table->foreignUuid('task_component_type_id')
+                ->constrained('task_component_types')
+                ->cascadeOnDelete();
             $table->timestamps();
+
+            $table->uuidMorphs('content');
+
+            $table->integer('sort_order')->default(0);
         });
     }
 
