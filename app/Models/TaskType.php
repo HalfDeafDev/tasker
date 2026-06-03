@@ -19,4 +19,9 @@ class TaskType extends Model
     {
         return $this->hasMany(TaskDefinition::class);
     }
+
+    public function taskInstances(): HasMany
+    {
+        return $this->hasMany(TaskInstance::class);
+    }
 }

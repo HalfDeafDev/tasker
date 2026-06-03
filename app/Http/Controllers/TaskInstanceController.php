@@ -6,6 +6,7 @@ use App\Enums\TaskTypes;
 use App\Models\TaskInstance;
 use App\Models\TaskType;
 use Illuminate\Http\Request;
+use Inertia\Inertia;
 
 class TaskInstanceController extends Controller
 {
@@ -51,7 +52,9 @@ class TaskInstanceController extends Controller
      */
     public function show(TaskInstance $taskInstance)
     {
-        //
+        return Inertia::render('tasks/showTask', [
+            'task' => $taskInstance,
+        ]);
     }
 
     /**

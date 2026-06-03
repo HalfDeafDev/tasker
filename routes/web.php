@@ -64,6 +64,9 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     Route::post('tasks/create/one-off', [TaskInstanceController::class, 'storeOneOff'])
         ->name('tasks.create.one-off');
+
+    Route::get('tasks/{taskInstance}', [TaskInstanceController::class, 'show'])
+        ->name('tasks.show');
 });
 
 require __DIR__.'/settings.php';

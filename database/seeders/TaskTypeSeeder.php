@@ -15,10 +15,22 @@ class TaskTypeSeeder extends Seeder
     {
         //
         $taskTypes = [
-            ['name' => TaskTypes::OneOff],
-            ['name' => TaskTypes::Repeating],
-            ['name' => TaskTypes::Recurring],
-            ['name' => TaskTypes::Habit],
+            [
+                'name' => TaskTypes::OneOff,
+                'slug' => 'one-off',
+            ],
+            [
+                'name' => TaskTypes::Repeating,
+                'slug' => 'repeating',
+            ],
+            [
+                'name' => TaskTypes::Recurring,
+                'slug' => 'recurring',
+            ],
+            [
+                'name' => TaskTypes::Habit,
+                'slug' => 'habit',
+            ],
         ];
 
         foreach ($taskTypes as $taskType) {

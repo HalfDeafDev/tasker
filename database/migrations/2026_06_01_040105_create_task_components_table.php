@@ -13,16 +13,21 @@ return new class extends Migration
     {
         Schema::create('task_components', function (Blueprint $table) {
             $table->uuid()->primary();
-            $table->uuidMorphs('componentable');
 
             $table->foreignUuid('task_component_type_id')
                 ->constrained('task_component_types')
                 ->cascadeOnDelete();
+
             $table->timestamps();
 
+            // TaskDefinition | TaskInstance
+            $table->uuidMorphs('componentable');
+            // Components: DescriptionComponent | DueDateComponent
             $table->uuidMorphs('content');
 
             $table->integer('sort_order')->default(0);
+
+            $table->softDeletes();
         });
     }
 
