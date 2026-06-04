@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\TaskComponentController;
 use App\Http\Controllers\TaskInstanceController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -67,6 +68,9 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     Route::get('tasks/{taskInstance}', [TaskInstanceController::class, 'show'])
         ->name('tasks.show');
+
+    Route::post('component/create/description', [TaskComponentController::class, 'storeDescriptionComponent'])
+        ->name('component.create.description');
 });
 
 require __DIR__.'/settings.php';
