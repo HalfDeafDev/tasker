@@ -8,15 +8,17 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 
-#[Fillable(
-    'task_component_type_id', 'sort_order',
-)]
 class TaskComponent extends Model
 {
     //
     use HasUuids;
 
-    public function componentable(): MorphTo
+    protected $fillable = [
+        'task_component_type_id',
+        'sort_order',
+    ];
+
+    public function componentOwner(): MorphTo
     {
         return $this->morphTo();
     }

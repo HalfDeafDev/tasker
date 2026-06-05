@@ -12,7 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('description_components', function (Blueprint $table) {
-            $table->id();
+            $table->uuid('id')->primary();
+            $table->longText('body');
             $table->timestamps();
         });
     }

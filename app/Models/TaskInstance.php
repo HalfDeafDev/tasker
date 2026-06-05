@@ -38,6 +38,6 @@ class TaskInstance extends Model
 
     public function components(): MorphMany
     {
-        return $this->morphMany(TaskComponent::class, 'componentable');
+        return $this->morphMany(TaskComponent::class, 'componentOwner');
     }
 }

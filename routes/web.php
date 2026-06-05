@@ -71,6 +71,17 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     Route::post('component/create/description', [TaskComponentController::class, 'storeDescriptionComponent'])
         ->name('component.create.description');
+
+    Route::get('dev/description/create', function (Request $request) {
+        $tasks = $request->user()->taskInstances()->get();
+
+        return Inertia::render(
+            'dev/TaskDescriptionAdder',
+            [
+                'tasks' => $tasks,
+            ]
+        );
+    });
 });
 
 require __DIR__.'/settings.php';

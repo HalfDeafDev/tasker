@@ -4,12 +4,11 @@
 //     name: string
 // }
 
-import { Link, useForm } from '@inertiajs/vue3';
+import { useForm } from '@inertiajs/vue3';
 import { description } from '@/routes/component/create';
 
 type Task = {
     id: string;
-    completed: boolean;
     title: string;
 };
 
@@ -20,6 +19,7 @@ defineProps<{
 const form = useForm({
     task_id: '',
     body: '',
+    task_entity_type: 'instance'
 });
 
 
@@ -35,7 +35,10 @@ function submit() {
             <option v-for="task in tasks" :key="task.id" :value="task.id">
                 {{ task.title }}
             </option>
-        </select>
+        </select><br />
+        <label for="Body">Body</label><br />
+        <textarea v-model="form.body"></textarea><br />
+        <button type="submit">Add Description</button>
     </form>
 </template>
 

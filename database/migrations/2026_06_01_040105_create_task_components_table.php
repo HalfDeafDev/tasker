@@ -21,7 +21,7 @@ return new class extends Migration
             $table->timestamps();
 
             // TaskDefinition | TaskInstance
-            $table->uuidMorphs('componentable');
+            $table->uuidMorphs('component_owner');
             // Components: DescriptionComponent | DueDateComponent
             $table->uuidMorphs('content');
 
