@@ -19,8 +19,8 @@ class TaskComponentTypeSeeder extends Seeder
         //
         $taskComponentTypes = [
             [
-                'name' => TaskComponentTypes::Description,
-                'slug' => 'description',
+                'slug' => TaskComponentTypes::Description,
+                'name' => 'Description',
             ],
         ];
 

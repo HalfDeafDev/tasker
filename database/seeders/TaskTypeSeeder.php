@@ -14,27 +14,8 @@ class TaskTypeSeeder extends Seeder
     public function run(): void
     {
         //
-        $taskTypes = [
-            [
-                'name' => TaskTypes::OneOff,
-                'slug' => 'one-off',
-            ],
-            [
-                'name' => TaskTypes::Repeating,
-                'slug' => 'repeating',
-            ],
-            [
-                'name' => TaskTypes::Recurring,
-                'slug' => 'recurring',
-            ],
-            [
-                'name' => TaskTypes::Habit,
-                'slug' => 'habit',
-            ],
-        ];
-
-        foreach ($taskTypes as $taskType) {
-            TaskType::updateOrCreate($taskType);
+        foreach (TaskTypes::cases() as $taskType) {
+            TaskType::updateOrCreate($taskType->seed());
         }
     }
 }

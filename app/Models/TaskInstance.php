@@ -36,8 +36,11 @@ class TaskInstance extends Model
         return $this->belongsTo(User::class);
     }
 
+    /**
+     * @return MorphMany<TaskComponent, $this>
+     */
     public function components(): MorphMany
     {
-        return $this->morphMany(TaskComponent::class, 'componentOwner');
+        return $this->morphMany(TaskComponent::class, 'component_owner');
     }
 }

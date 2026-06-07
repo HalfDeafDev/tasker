@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('task_components', function (Blueprint $table) {
-            $table->uuid()->primary();
+            $table->uuid('id')->primary();
 
             $table->foreignUuid('task_component_type_id')
                 ->constrained('task_component_types')

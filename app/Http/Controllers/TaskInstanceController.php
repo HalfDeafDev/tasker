@@ -52,8 +52,22 @@ class TaskInstanceController extends Controller
      */
     public function show(TaskInstance $taskInstance)
     {
+        $components = $taskInstance->components;
+
         return Inertia::render('tasks/showTask', [
-            'task' => $taskInstance,
+            'task' => [
+                'id' => $taskInstance->id,
+                'title' => $taskInstance->title,
+                'completed' => $taskInstance->completed,
+                'components' => $components
+                    ->sortBy('sort_order')
+                    ->map(fn ($component) => [
+                        'id' => $component->id,
+                        'task_type' => $component->taskComponentType->slug,
+                        'sort_order' => $component->sort_order,
+                        'content' => $component->content,
+                    ]),
+            ],
         ]);
     }
 

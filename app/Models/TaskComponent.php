@@ -20,7 +20,7 @@ class TaskComponent extends Model
 
     public function componentOwner(): MorphTo
     {
-        return $this->morphTo();
+        return $this->morphTo('component_owner');
     }
 
     public function content(): MorphTo

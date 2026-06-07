@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\TaskComponentTypes;
 use App\Models\DescriptionComponent;
 use App\Models\TaskComponent;
 use App\Models\TaskComponentType;
@@ -36,7 +37,7 @@ class TaskComponentController extends Controller
             'body' => $validated['body'],
         ]);
 
-        $descriptionType = TaskComponentType::where('slug', 'description')->firstOrFail();
+        $descriptionType = TaskComponentTypes::Description->model();
 
         /** @var TaskComponent $component */
         $component = $parent->components()->make([
@@ -47,7 +48,5 @@ class TaskComponentController extends Controller
         $component->content()->associate($descriptionComponent);
 
         $component->save();
-
-        return $parent;
     }
 }
