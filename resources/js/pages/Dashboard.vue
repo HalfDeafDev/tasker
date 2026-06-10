@@ -1,7 +1,8 @@
 <script setup lang="ts">
-import { Head } from '@inertiajs/vue3';
+import { Head, Link } from '@inertiajs/vue3';
 // import PlaceholderPattern from '@/components/PlaceholderPattern.vue';
 import { dashboard } from '@/routes';
+import { form } from '@/routes/definitions';
 
 defineOptions({
     layout: {
@@ -13,10 +14,11 @@ defineOptions({
         ],
     },
 });
-
-
 </script>
 
 <template>
     <Head title="Dashboard" />
+    <div>
+        <Link :href="form.url()"> Create Task Definition </Link>
+    </div>
 </template>

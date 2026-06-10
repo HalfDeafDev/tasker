@@ -12,7 +12,7 @@ use Illuminate\Database\Eloquent\Relations\MorphMany;
 /**
  * @mixin IdeHelperTaskDefinition
  */
-#[Fillable('title', 'body', 'task_type_id')]
+#[Fillable('title', 'task_type_id')]
 class TaskDefinition extends Model
 {
     //

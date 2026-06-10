@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\TaskComponentController;
+use App\Http\Controllers\TaskDefinitionController;
 use App\Http\Controllers\TaskInstanceController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -40,6 +41,7 @@ Route::get('/dev/props/null', function () {
 });
 
 Route::middleware(['auth', 'verified'])->group(function () {
+    // Template
     Route::get('dashboard', function (Request $request) {
         if ($request->filled('testprop')) {
             return Inertia::render('Dashboard', ['testprop' => $request->query('testprop')]);
@@ -48,6 +50,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
         return Inertia::render('Dashboard');
     })->name('dashboard');
 
+    // Task Instances
     Route::get('tasks/create', function () {
         return Inertia::render('dev/TaskInstanceCreate');
     })->name('tasks.create');
@@ -63,13 +66,33 @@ Route::middleware(['auth', 'verified'])->group(function () {
         );
     })->name('tasks.list');
 
-    Route::post('tasks/create/one-off', [TaskInstanceController::class, 'storeOneOff'])
+    Route::post('tasks/create/one-off',
+        [TaskInstanceController::class, 'storeOneOff'])
         ->name('tasks.create.one-off');
 
-    Route::get('tasks/{taskInstance}', [TaskInstanceController::class, 'show'])
+    Route::get('tasks/{taskInstance}',
+        [TaskInstanceController::class, 'show'])
         ->name('tasks.show');
 
-    Route::post('component/create/description', [TaskComponentController::class, 'storeDescriptionComponent'])
+    // Task Definitions
+
+    Route::get('definitions',
+        [TaskDefinitionController::class, 'index'])
+        ->name('definitions.index');
+
+    Route::get('definitions/create',
+        [TaskDefinitionController::class, 'create'])
+        ->name('definitions.form');
+
+    Route::post('definitions/create',
+        [TaskDefinitionController::class, 'store'])
+        ->name('definitions.create');
+
+    /* Task Components */
+
+    // Task Components - Description
+    Route::post('component/create/description',
+        [TaskComponentController::class, 'storeDescriptionComponent'])
         ->name('component.create.description');
 
     Route::get('dev/description/create', function (Request $request) {
