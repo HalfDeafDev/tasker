@@ -5,14 +5,7 @@
 // }
 
 import TaskComponentViewer from '@/components/task_components/TaskComponentViewer.vue';
-import type { TaskComponent } from '@/types/component';
-
-type Task = {
-    id: string;
-    title: string;
-    completed: boolean;
-    components: TaskComponent[];
-};
+import type { Task } from '@/types/component';
 
 defineProps<{
     task: Task;

@@ -35,4 +35,9 @@ class TaskDefinition extends Model
     {
         return $this->morphMany(TaskComponent::class, 'component_owner');
     }
+
+    public function instances(): HasMany
+    {
+        return $this->hasMany(TaskInstance::class);
+    }
 }

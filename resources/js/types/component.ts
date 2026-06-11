@@ -20,3 +20,10 @@ export type TaskComponent = {
     sort_order: number;
     content: unknown;
 };
+
+export type Task = {
+    id: string;
+    title: string;
+    completed: boolean;
+    components: TaskComponent[];
+};

@@ -21,7 +21,7 @@ class TaskInstance extends Model
     use HasUuids;
 
     //
-    public function taskDefinition(): BelongsTo
+    public function definition(): BelongsTo
     {
         return $this->belongsTo(TaskDefinition::class);
     }

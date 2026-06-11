@@ -6,23 +6,27 @@
 
 import { Link } from '@inertiajs/vue3';
 
-type Task = {
+type Definition = {
     id: string;
     title: string;
 };
 
 defineProps<{
-    definitions: Task[];
+    definitions: Definition[];
 }>();
+
+function instantiateDefinition() {
+
+}
 </script>
 
 <template>
     <div v-if="definitions.length === 0">You have no definitions yet!</div>
     <div v-else>
-        <div v-for="task in definitions" :key="task.id">
+        <div v-for="definition in definitions" :key="definition.id">
             <p>
-                <Link :href="`/definitions/${task.id}`">
-                    {{ task.title }}
+                <Link :href="`/definitions/${definition.id}`">
+                    {{ definition.title }}
                 </Link>
             </p>
         </div>
