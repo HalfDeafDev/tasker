@@ -8,6 +8,7 @@ const form = useForm({
 });
 
 function submitDefinition() {
+    console.log('submit hit', form);
     form.post(create().url);
 }
 

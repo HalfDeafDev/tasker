@@ -18,7 +18,7 @@ class TaskDefinitionController extends Controller
         $definitions = $request->user()->taskDefinitions()->get();
 
         return Inertia::render(
-            'dev/TaskDefinitionCreate',
+            'dev/task_defintions/List',
             [
                 'definitions' => $definitions,
             ]
@@ -51,13 +51,13 @@ class TaskDefinitionController extends Controller
         //
         $validate = $request->validate([
             'title' => ['required', 'string'],
-            'task_slug' => ['required', 'string'],
+            'task_type' => ['required', 'string', 'exists:task_types,slug'],
         ]);
 
-        $taskTypeId = TaskTypes::where('slug', $request->task_type)->first()->id;
+        $taskTypeId = TaskType::where('slug', $validate['task_type'])->value('id');
 
         $definition = [
-            'title' => $request->title,
+            'title' => $validate['title'],
             'task_type_id' => $taskTypeId,
         ];
 
