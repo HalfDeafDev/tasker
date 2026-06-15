@@ -34,6 +34,9 @@ class User extends Authenticatable
         ];
     }
 
+    /**
+     * @return HasMany<TaskInstance, $this>
+     */
     public function taskInstances(): HasMany
     {
         return $this->hasMany(TaskInstance::class);

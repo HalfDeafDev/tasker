@@ -43,6 +43,10 @@ class TaskDefinitionController extends Controller
         ]);
     }
 
+    public function instantiate(TaskDefinition $definition, ) {
+
+    }
+
     /**
      * Store a newly created resource in storage.
      */

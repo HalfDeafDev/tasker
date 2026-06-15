@@ -88,6 +88,14 @@ Route::middleware(['auth', 'verified'])->group(function () {
         [TaskDefinitionController::class, 'store'])
         ->name('definitions.create');
 
+    Route::get('definitions/{definition}',
+        [TaskDefinitionController::class, 'show'])
+        ->name('definitions.show');
+
+    Route::post('definitions/{definition}/instantiate',
+        [TaskDefinitionController::class, 'instantiate'])
+        ->name('definitions.instantiate');
+
     /* Task Components */
 
     // Task Components - Description
