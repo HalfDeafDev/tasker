@@ -13,13 +13,13 @@ class TaskCreationService
      * Create a new class instance.
      */
     public function __construct(
-        private TaskCreationResolver $taskCreationResolver,
-    )
-    {
+        private readonly TaskCreationResolver $taskCreationResolver,
+    ) {
         //
     }
 
-    public function Instantiate(TaskDefinition $definition, User $user): TaskInstance {
+    public function instantiate(TaskDefinition $definition, User $user): TaskInstance
+    {
         return $this->taskCreationResolver
             ->forDefinition($definition)
             ->instantiate($definition, $user);

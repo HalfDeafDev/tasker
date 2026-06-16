@@ -60,6 +60,8 @@ class TaskInstanceController extends Controller
                 'id' => $taskInstance->id,
                 'title' => $taskInstance->title,
                 'completed' => $taskInstance->completed,
+                'created_at' => $taskInstance->created_at->toISOString(),
+                'updated_at' => $taskInstance->updated_at->toISOString(),
                 'components' => $components
                     ->sortBy('sort_order')
                     ->map(fn ($component) => [

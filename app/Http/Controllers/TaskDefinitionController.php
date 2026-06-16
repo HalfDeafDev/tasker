@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Enums\TaskTypes;
 use App\Models\TaskDefinition;
 use App\Models\TaskType;
+use App\Services\Tasks\TaskCreationService;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
@@ -43,8 +44,15 @@ class TaskDefinitionController extends Controller
         ]);
     }
 
-    public function instantiate(TaskDefinition $definition, ) {
+    public function instantiate(
+        TaskDefinition $definition,
+        Request $request,
+        TaskCreationService $service
+    ) {
+        $instance = $service->instantiate($definition, $request->user);
 
+        return redirect()
+            ->route('tasks.show', $instance);
     }
 
     /**
