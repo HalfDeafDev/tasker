@@ -7,7 +7,15 @@
 import { useForm } from '@inertiajs/vue3';
 import TaskComponentViewer from '@/components/task_components/TaskComponentViewer.vue';
 import { instantiate } from '@/routes/definitions';
-import type { TaskDefinition } from '@/types/component';
+import type { TaskComponent } from '@/types/component';
+
+type TaskDefinition = {
+    id: string;
+    title: string;
+    created_at: string;
+    updated_at: string;
+    components: TaskComponent[];
+}
 
 const props = defineProps<{
     definition: TaskDefinition;

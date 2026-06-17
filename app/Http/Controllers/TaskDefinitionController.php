@@ -49,7 +49,7 @@ class TaskDefinitionController extends Controller
         Request $request,
         TaskCreationService $service
     ) {
-        $instance = $service->instantiate($definition, $request->user);
+        $instance = $service->instantiate($definition, $request->user());
 
         return redirect()
             ->route('tasks.show', $instance);
@@ -81,9 +81,29 @@ class TaskDefinitionController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(TaskDefinition $taskDefinition)
+    public function show(TaskDefinition $definition)
     {
-        //
+        $data = [
+            'id' => $definition->id,
+            'title' => $definition->title,
+            'created_at' => $definition->created_at,
+            'updated_at' => $definition->updated_at,
+            'components' => $definition->components
+                ->sortBy('sort_order')
+                ->map(fn ($component) => [
+                    'id' => $component->id,
+                    'task_type' => $component->taskComponentType->slug,
+                    'sort_order' => $component->sort_order,
+                    'content' => $component->content,
+                ]),
+        ];
+
+        return Inertia::render(
+            'definitions/showDefinition',
+            [
+                'definition' => $data,
+            ]
+        );
     }
 
     /**
