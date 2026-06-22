@@ -2789,9 +2789,11 @@ namespace PHPSTORM_META {
         registerArgumentsSet('routes', 
 'login','login.store','logout','password.request','password.reset',
 'password.email','password.update','register','register.store','password.confirm',
-'password.confirmation','password.confirm.store','home','dev.props','dashboard','profile.edit',
-'profile.update','profile.destroy','security.edit','user-password.update','appearance.edit',
-'storage.local','storage.local.upload',);
+'password.confirmation','password.confirm.store','home','dev.props','dashboard','tasks.create','tasks.list',
+'tasks.create.one-off','tasks.show','definitions.index','definitions.form','definitions.create',
+'definitions.show','definitions.instantiate','component.create.description',
+'profile.edit','profile.update','profile.destroy','security.edit','user-password.update',
+'appearance.edit','storage.local','storage.local.upload',);
         registerArgumentsSet('views', 
 'app','laravel-exceptions-renderer::components.badge','laravel-exceptions-renderer::components.empty-state','laravel-exceptions-renderer::components.file-with-line','laravel-exceptions-renderer::components.formatted-source',
 'laravel-exceptions-renderer::components.frame','laravel-exceptions-renderer::components.frame-code','laravel-exceptions-renderer::components.header','laravel-exceptions-renderer::components.http-method','laravel-exceptions-renderer::components.icons.alert',

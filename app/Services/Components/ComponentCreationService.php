@@ -2,11 +2,9 @@
 
 namespace App\Services\Components;
 
+use App\Models\Contracts\HasTaskComponents;
 use App\Models\TaskComponent;
-use App\Models\TaskInstance;
-use App\Models\User;
 use App\Services\Components\CreationHandlers\ComponentCreationResolver;
-use App\Services\Components\Creationhandlers\CreatesComponent;
 
 class ComponentCreationService
 {
@@ -17,20 +15,17 @@ class ComponentCreationService
      */
     public function __construct(
         ComponentCreationResolver $componentCreationResolver,
-    )
-    {
+    ) {
         $this->componentCreationResolver = $componentCreationResolver;
         //
     }
 
     public function createFrom(
-        TaskComponent $taskComponent,
-        TaskInstance $taskInstance,
-        User $user
-    ): TaskComponent
-    {
+        TaskComponent $component,
+        HasTaskComponents $task,
+    ): TaskComponent {
         return $this->componentCreationResolver
-            ->forComponent($taskComponent)
-            ->create()
+            ->forComponent($component)
+            ->createFromReference($task, $component);
     }
 }

@@ -2,12 +2,44 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Attributes\Fillable;
+use App\Enums\TaskComponentTypes;
+use Carbon\CarbonImmutable;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 
+/**
+ * @property string $id
+ * @property string $task_component_type_id
+ * @property CarbonImmutable|null $created_at
+ * @property CarbonImmutable|null $updated_at
+ * @property string $component_owner_type
+ * @property string $component_owner_id
+ * @property string $content_type
+ * @property string $content_id
+ * @property int $sort_order
+ * @property string|null $deleted_at
+ * @property-read Model|\Eloquent $componentOwner
+ * @property-read TaskComponentType|null $componentType
+ * @property-read Model|\Eloquent $content
+ *
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|TaskComponent newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|TaskComponent newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|TaskComponent query()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|TaskComponent whereComponentOwnerId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|TaskComponent whereComponentOwnerType($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|TaskComponent whereContentId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|TaskComponent whereContentType($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|TaskComponent whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|TaskComponent whereDeletedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|TaskComponent whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|TaskComponent whereSortOrder($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|TaskComponent whereTaskComponentTypeId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|TaskComponent whereUpdatedAt($value)
+ *
+ * @mixin \Eloquent
+ */
 class TaskComponent extends Model
 {
     //
@@ -28,8 +60,24 @@ class TaskComponent extends Model
         return $this->morphTo();
     }
 
-    public function taskComponentType(): BelongsTo
+    public function componentType(): BelongsTo
     {
         return $this->belongsTo(TaskComponentType::class);
+    }
+
+    public function IsType(TaskComponentTypes $type): bool
+    {
+        return $this->componentType->slug == $type->slug();
+    }
+
+    /**
+     * @template T
+     *
+     * @param  T  $contentType
+     * @return T
+     */
+    public function HasContentAs($contentType)
+    {
+        
     }
 }

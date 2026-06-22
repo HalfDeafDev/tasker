@@ -15,7 +15,7 @@ class ComponentCreationResolver
         //
     }
 
-    public function forComponent(TaskComponent $taskComponent): CreatesComponent
+    public function forComponent(TaskComponent $taskComponent): CreatesComponentFromReference
     {
         return match ($taskComponent->type) {
             TaskComponentTypes::Description => app(DescriptionCreationHandler::class),
