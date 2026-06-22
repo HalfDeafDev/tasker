@@ -23,7 +23,6 @@ use Illuminate\Database\Eloquent\Relations\MorphTo;
  * @property-read Model|\Eloquent $componentOwner
  * @property-read TaskComponentType|null $componentType
  * @property-read Model|\Eloquent $content
- *
  * @method static \Illuminate\Database\Eloquent\Builder<static>|TaskComponent newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|TaskComponent newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|TaskComponent query()
@@ -37,7 +36,6 @@ use Illuminate\Database\Eloquent\Relations\MorphTo;
  * @method static \Illuminate\Database\Eloquent\Builder<static>|TaskComponent whereSortOrder($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|TaskComponent whereTaskComponentTypeId($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|TaskComponent whereUpdatedAt($value)
- *
  * @mixin \Eloquent
  */
 class TaskComponent extends Model
@@ -65,19 +63,24 @@ class TaskComponent extends Model
         return $this->belongsTo(TaskComponentType::class);
     }
 
-    public function IsType(TaskComponentTypes $type): bool
+    public function isType(TaskComponentTypes $type): bool
     {
         return $this->componentType->slug == $type->slug();
     }
 
-    /**
-     * @template T
-     *
-     * @param  T  $contentType
-     * @return T
-     */
-    public function HasContentAs($contentType)
+    public function contentIs(string $class): bool
     {
-        
+        return $this->content instanceof $class;
+    }
+
+    public function assertContentIs(string $class): Model
+    {
+        $content = $this->content;
+
+        if (! $content instanceof DescriptionComponent) {
+            throw new LogicException('Expected Description Type Component');
+        }
+
+        return $content;
     }
 }

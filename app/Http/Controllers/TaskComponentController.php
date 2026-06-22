@@ -8,13 +8,14 @@ use App\Models\TaskComponent;
 use App\Models\TaskComponentType;
 use App\Models\TaskDefinition;
 use App\Models\TaskInstance;
+use App\Services\Components\ComponentCreationService;
 use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
 
 class TaskComponentController extends Controller
 {
     //
-    public function storeDescriptionComponent(Request $request)
+    public function storeDescriptionComponent(Request $request, ComponentCreationService $componentCreationService)
     {
         $validated = $request->validate([
             'body' => ['required', 'string'],
@@ -33,20 +34,20 @@ class TaskComponentController extends Controller
             ]);
         }
 
-        $descriptionComponent = DescriptionComponent::create([
-            'body' => $validated['body'],
-        ]);
-
-        $descriptionType = TaskComponentTypes::Description->model();
-
-        /** @var TaskComponent $component */
-        $component = $parent->components()->make([
-            'task_component_type_id' => $descriptionType->id,
-            'sort_order' => $parent->components()->count(),
-        ]);
-
-        $component->content()->associate($descriptionComponent);
-
-        $component->save();
+//        $descriptionComponent = DescriptionComponent::create([
+//            'body' => $validated['body'],
+//        ]);
+//
+//        $descriptionType = TaskComponentTypes::Description->model();
+//
+//        /** @var TaskComponent $component */
+//        $component = $parent->components()->make([
+//            'task_component_type_id' => $descriptionType->id,
+//            'sort_order' => $parent->components()->count(),
+//        ]);
+//
+//        $component->content()->associate($descriptionComponent);
+//
+//        $component->save();
     }
 }

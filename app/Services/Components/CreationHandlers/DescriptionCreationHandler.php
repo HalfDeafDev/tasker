@@ -6,6 +6,7 @@ use App\Enums\TaskComponentTypes;
 use App\Models\Contracts\HasTaskComponents;
 use App\Models\DescriptionComponent;
 use App\Models\TaskComponent;
+use Illuminate\Support\Facades\Validator;
 use LogicException;
 
 class DescriptionCreationHandler implements CreatesComponentFromConfig, CreatesComponentFromReference
@@ -18,26 +19,31 @@ class DescriptionCreationHandler implements CreatesComponentFromConfig, CreatesC
         //
     }
 
-    public function validateComponentContent(TaskComponent $taskComponent): DescriptionComponent
-    {
-
-    }
-
     public function createFromReference(HasTaskComponents $task, TaskComponent $component): TaskComponent
     {
-        if (! $component->IsType(TaskComponentTypes::Description)) {
+        if (! $component->isType(TaskComponentTypes::Description)) {
             throw new LogicException(
                 'DescriptionCreationHandler received a component that is not of type '.TaskComponentTypes::Description->slug().'.');
         }
 
-        $content = $component->content;
+        /** @var DescriptionComponent $content */
+        $content = $component->assertContentIs(DescriptionComponent::class);
 
-        if (! $content instanceof DescriptionComponent) {
-            throw new LogicException('Expected Description Type Component');
-        }
+        return $this->createFromConfig($task, [
+            'body' => $content->body,
+        ]);
+    }
+
+    public function createFromConfig(HasTaskComponents $task, array $config): TaskComponent
+    {
+        $validator = Validator::make($config, [
+            'body' => ['required', 'string'],
+        ]);
+
+        $validated = $validator->validate();
 
         $descriptionComponent = DescriptionComponent::create([
-            'body' => $content->body,
+            'body' => $validated['body'],
         ]);
 
         $descriptionType = TaskComponentTypes::Description->model();
@@ -53,9 +59,5 @@ class DescriptionCreationHandler implements CreatesComponentFromConfig, CreatesC
         $component->save();
 
         return $component;
-    }
-
-    public function createFromConfig(HasTaskComponents $task, array $config): TaskComponent
-    {
     }
 }
