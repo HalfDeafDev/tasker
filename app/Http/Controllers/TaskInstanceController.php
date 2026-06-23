@@ -3,11 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Enums\TaskTypes;
+use App\Models\TaskComponent;
 use App\Models\TaskInstance;
 use App\Models\TaskType;
-use App\Services\Tasks\TaskCreationService;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
+use Illuminate\Database\Eloquent\Collection;
 
 class TaskInstanceController extends Controller
 {
@@ -22,10 +23,7 @@ class TaskInstanceController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create(Request $request)
-    {
-
-    }
+    public function create(Request $request) {}
 
     /**
      * Store a newly created resource in storage.
@@ -53,6 +51,7 @@ class TaskInstanceController extends Controller
      */
     public function show(TaskInstance $taskInstance)
     {
+        /** @var Collection<int, TaskComponent> $components */
         $components = $taskInstance->components;
 
         return Inertia::render('tasks/showTask', [
@@ -66,7 +65,7 @@ class TaskInstanceController extends Controller
                     ->sortBy('sort_order')
                     ->map(fn ($component) => [
                         'id' => $component->id,
-                        'task_type' => $component->taskComponentType->slug,
+                        'task_type' => $component->componentType->slug,
                         'sort_order' => $component->sort_order,
                         'content' => $component->content,
                     ]),

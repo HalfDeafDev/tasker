@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Contracts\HasTaskComponents;
 use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Model;
@@ -47,7 +48,7 @@ use Illuminate\Database\Eloquent\Relations\MorphMany;
     'due_date', 'task_definition_id',
     'active', 'completed'
 )]
-class TaskInstance extends Model
+class TaskInstance extends Model implements HasTaskComponents
 {
     use HasUuids;
 

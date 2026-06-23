@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Enums\TaskComponentTypes;
 use App\Models\DescriptionComponent;
 use App\Models\TaskComponent;
-use App\Models\TaskComponentType;
 use App\Models\TaskDefinition;
 use App\Models\TaskInstance;
 use App\Services\Components\ComponentCreationService;
@@ -34,20 +33,22 @@ class TaskComponentController extends Controller
             ]);
         }
 
-//        $descriptionComponent = DescriptionComponent::create([
-//            'body' => $validated['body'],
-//        ]);
-//
-//        $descriptionType = TaskComponentTypes::Description->model();
-//
-//        /** @var TaskComponent $component */
-//        $component = $parent->components()->make([
-//            'task_component_type_id' => $descriptionType->id,
-//            'sort_order' => $parent->components()->count(),
-//        ]);
-//
-//        $component->content()->associate($descriptionComponent);
-//
-//        $component->save();
+        $componentCreationService->
+            createFromConfig($validated, TaskComponentTypes::Description, $parent);
+        //        $descriptionComponent = DescriptionComponent::create([
+        //            'body' => $validated['body'],
+        //        ]);
+        //
+        //        $descriptionType = TaskComponentTypes::Description->model();
+        //
+        //        /** @var TaskComponent $component */
+        //        $component = $parent->components()->make([
+        //            'task_component_type_id' => $descriptionType->id,
+        //            'sort_order' => $parent->components()->count(),
+        //        ]);
+        //
+        //        $component->content()->associate($descriptionComponent);
+        //
+        //        $component->save();
     }
 }

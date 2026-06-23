@@ -2,6 +2,7 @@
 
 namespace App\Services\Components;
 
+use App\Enums\TaskComponentTypes;
 use App\Models\Contracts\HasTaskComponents;
 use App\Models\TaskComponent;
 use App\Services\Components\CreationHandlers\ComponentCreationResolver;
@@ -20,12 +21,22 @@ class ComponentCreationService
         //
     }
 
-    public function createFrom(
+    public function createFromReferences(
         TaskComponent $component,
         HasTaskComponents $task,
     ): TaskComponent {
         return $this->componentCreationResolver
             ->forComponent($component)
             ->createFromReference($task, $component);
+    }
+
+    public function createFromConfig(
+        Array $config,
+        TaskComponentTypes $type,
+        HasTaskComponents $task,
+    ): TaskComponent {
+        return $this->componentCreationResolver
+            ->forComponentType($type)
+            ->createFromConfig($task, $config);
     }
 }
