@@ -3,8 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Enums\TaskComponentTypes;
-use App\Models\DescriptionComponent;
-use App\Models\TaskComponent;
 use App\Models\TaskDefinition;
 use App\Models\TaskInstance;
 use App\Services\Components\ComponentCreationService;
@@ -13,7 +11,6 @@ use Illuminate\Validation\ValidationException;
 
 class TaskComponentController extends Controller
 {
-    //
     public function storeDescriptionComponent(Request $request, ComponentCreationService $componentCreationService)
     {
         $validated = $request->validate([
@@ -23,8 +20,14 @@ class TaskComponentController extends Controller
         ]);
 
         $parent = match ($validated['task_entity_type']) {
-            'instance' => TaskInstance::find($validated['task_id']),
-            'definition' => TaskDefinition::find($validated['task_id']),
+            'instance' => [
+                'task' => TaskInstance::find($validated['task_id']),
+                'route' => 'tasks.show',
+            ],
+            'definition' => [
+                'task' => TaskDefinition::find($validated['task_id']),
+                'route' => 'definitions.show',
+            ],
         };
 
         if (! $parent) {
@@ -34,21 +37,8 @@ class TaskComponentController extends Controller
         }
 
         $componentCreationService->
-            createFromConfig($validated, TaskComponentTypes::Description, $parent);
-        //        $descriptionComponent = DescriptionComponent::create([
-        //            'body' => $validated['body'],
-        //        ]);
-        //
-        //        $descriptionType = TaskComponentTypes::Description->model();
-        //
-        //        /** @var TaskComponent $component */
-        //        $component = $parent->components()->make([
-        //            'task_component_type_id' => $descriptionType->id,
-        //            'sort_order' => $parent->components()->count(),
-        //        ]);
-        //
-        //        $component->content()->associate($descriptionComponent);
-        //
-        //        $component->save();
+            createFromConfig($validated, TaskComponentTypes::Description, $parent['task']);
+
+        return redirect()->route($parent['route'], $parent['task']);
     }
 }

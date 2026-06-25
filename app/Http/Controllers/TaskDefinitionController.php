@@ -92,7 +92,7 @@ class TaskDefinitionController extends Controller
                 ->sortBy('sort_order')
                 ->map(fn ($component) => [
                     'id' => $component->id,
-                    'task_type' => $component->taskComponentType->slug,
+                    'task_type' => $component->componentType->slug,
                     'sort_order' => $component->sort_order,
                     'content' => $component->content,
                 ]),
