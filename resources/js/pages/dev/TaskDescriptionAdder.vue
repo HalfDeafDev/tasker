@@ -30,7 +30,7 @@ function submit() {
 
 <template>
     <form @submit.prevent="submit">
-        <select v-model="form.task_id">
+        <select v-model="form.task_id" class="dark:bg-gray-800 dark:text-white">
             <option disabled value="">Choose a task</option>
             <option v-for="task in tasks" :key="task.id" :value="task.id">
                 {{ task.title }}

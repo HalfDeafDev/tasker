@@ -60,7 +60,7 @@ class TaskComponent extends Model
 
     public function componentType(): BelongsTo
     {
-        return $this->belongsTo(TaskComponentType::class);
+        return $this->belongsTo(TaskComponentType::class, 'task_component_type_id');
     }
 
     public function isType(TaskComponentTypes $type): bool
