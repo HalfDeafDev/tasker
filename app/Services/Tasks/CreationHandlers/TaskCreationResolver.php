@@ -7,7 +7,12 @@ use App\Services\Tasks\CreationHandlers\OneOffCreationHandler;
 
 class TaskCreationResolver
 {
-    public function forDefinition(TaskDefinition $definition): CreatesTask
+    public function usingDefinition(TaskDefinition $definition): CreatesTaskFromDefinition
+    {
+        return app(OneOffCreationHandler::class);
+    }
+
+    public function usingConfig(Array $config): CreatesTaskFromConfig
     {
         return app(OneOffCreationHandler::class);
     }

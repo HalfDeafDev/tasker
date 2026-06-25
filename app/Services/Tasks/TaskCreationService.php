@@ -18,10 +18,17 @@ class TaskCreationService
         //
     }
 
-    public function instantiate(TaskDefinition $definition, User $user): TaskInstance
+    public function createFromDefinition(TaskDefinition $definition, User $user): TaskInstance
     {
         return $this->taskCreationResolver
-            ->forDefinition($definition)
-            ->instantiate($definition, $user);
+            ->usingDefinition($definition)
+            ->createFromDefinition($definition, $user);
+    }
+
+    public function createFromConfig(Array $config, User $user): TaskInstance
+    {
+        return $this->taskCreationResolver
+            ->usingConfig($config)
+            ->createFromConfig($config, $user);
     }
 }

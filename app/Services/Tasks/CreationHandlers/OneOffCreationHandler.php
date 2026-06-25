@@ -6,7 +6,7 @@ use App\Models\TaskDefinition;
 use App\Models\TaskInstance;
 use App\Models\User;
 
-class OneOffCreationHandler implements CreatesTask
+class OneOffCreationHandler implements CreatesTaskFromDefinition
 {
     /**
      * Create a new class instance.
@@ -16,7 +16,7 @@ class OneOffCreationHandler implements CreatesTask
         //
     }
 
-    public function instantiate(TaskDefinition $definition, User $user): TaskInstance
+    public function createFromDefinition(TaskDefinition $definition, User $user): TaskInstance
     {
         return $user->taskInstances()->create([
             'title' => $definition->title,

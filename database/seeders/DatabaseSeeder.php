@@ -56,5 +56,10 @@ class DatabaseSeeder extends Seeder
         $component->content()->associate($taskDescription);
 
         $component->save();
+
+        $user->taskDefinitions()->create([
+            'title' => 'A Task Definition',
+            'task_type_id' => $oneOff
+        ]);
     }
 }

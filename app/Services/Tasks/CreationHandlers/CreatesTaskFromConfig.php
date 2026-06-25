@@ -6,8 +6,8 @@ use App\Models\TaskDefinition;
 use App\Models\TaskInstance;
 use App\Models\User;
 
-interface CreatesTask
+interface CreatesTaskFromConfig
 {
     //
-    public function instantiate(TaskDefinition $definition, User $user): TaskInstance;
+    public function createFromConfig(Array $config, User $user): TaskInstance;
 }
