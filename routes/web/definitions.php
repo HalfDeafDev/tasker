@@ -7,7 +7,7 @@ use Inertia\Inertia;
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('definitions',
         [TaskDefinitionController::class, 'index'])
-        ->name('definitions.index');
+        ->name('definitions.list');
 
     Route::get('definitions/create',
         [TaskDefinitionController::class, 'create'])

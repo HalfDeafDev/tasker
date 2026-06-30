@@ -13,17 +13,17 @@ type Task = {
 };
 
 defineProps<{
-    tasks: Task[];
+    instances: Task[];
 }>();
 </script>
 
 <template>
-    <div v-if="tasks.length === 0">You have no tasks yet!</div>
+    <div v-if="instances.length === 0">You have no tasks yet!</div>
     <div v-else>
-        <div v-for="task in tasks" :key="task.id">
+        <div v-for="instance in instances" :key="instance.id">
             <p>
-                <Link :href="`/tasks/${task.id}`">
-                    ({{ task.completed }}) {{ task.title }}
+                <Link :href="`/tasks/${instance.id}`">
+                    ({{ instance.completed }}) {{ instance.title }}
                 </Link>
             </p>
         </div>

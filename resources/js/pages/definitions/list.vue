@@ -1,13 +1,13 @@
 <script setup lang="ts">
 import DefinitionCard from '@/components/DefinitionCard.vue';
-import { index } from '@/routes/definitions';
+import { list } from '@/routes/definitions';
 
 defineOptions({
     layout: {
         breadcrumbs: [
             {
                 title: 'Definitions',
-                href: index(),
+                href: list(),
             },
         ],
     },

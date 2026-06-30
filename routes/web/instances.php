@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\TaskInstanceController;
 use Inertia\Inertia;
+use Illuminate\Http\Request;
 
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('instances/create', function () {
@@ -10,9 +11,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     Route::get('instances', function (Request $request) {
         $tasks = $request->user()->taskInstances()->get();
-
         return Inertia::render(
-            'dev/TaskInstanceList',
+            'instances/list',
             [
                 'instances' => $tasks,
             ]

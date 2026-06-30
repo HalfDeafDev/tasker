@@ -19,45 +19,9 @@ import {
     SidebarMenuButton,
     SidebarMenuItem,
 } from '@/components/ui/sidebar';
+import { mainNavItems, footerNavItems } from '@/data/navigation';
 import { dashboard } from '@/routes';
-import { index as definitionIndex } from '@/routes/definitions';
-import type { NavItem } from '@/types';
 
-const mainNavItems: NavItem[] = [
-    {
-        title: 'Dashboard',
-        href: dashboard(),
-        icon: LayoutGrid,
-    },
-    {
-        title: 'Tasks',
-        href: dashboard(),
-        icon: CheckCheck,
-    },
-    {
-        title: 'Definitions',
-        href: definitionIndex(),
-        icon: BookText,
-    },
-    {
-        title: 'Dev',
-        href: dashboard(),
-        icon: CodeXml,
-    },
-];
-
-const footerNavItems: NavItem[] = [
-    // {
-    //     title: 'Repository',
-    //     href: 'https://github.com/laravel/vue-starter-kit',
-    //     icon: FolderGit2,
-    // },
-    // {
-    //     title: 'Documentation',
-    //     href: 'https://laravel.com/docs/starter-kits#vue',
-    //     icon: BookOpen,
-    // },
-];
 </script>
 
 <template>
