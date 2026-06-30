@@ -59,7 +59,12 @@ class DatabaseSeeder extends Seeder
 
         $user->taskDefinitions()->create([
             'title' => 'A Task Definition',
-            'task_type_id' => $oneOff
+            'task_type_id' => $oneOff,
+        ]);
+
+        $user->taskDefinitions()->create([
+            'title' => 'A Second Definition',
+            'task_type_id' => $oneOff,
         ]);
     }
 }

@@ -19,7 +19,7 @@ class TaskDefinitionController extends Controller
         $definitions = $request->user()->taskDefinitions()->get();
 
         return Inertia::render(
-            'definitions/List',
+            'definitions/list',
             [
                 'definitions' => $definitions,
             ]
@@ -52,7 +52,7 @@ class TaskDefinitionController extends Controller
         $instance = $service->createFromDefinition($definition, $request->user());
 
         return redirect()
-            ->route('tasks.show', $instance);
+            ->route('instances.show', $instance);
     }
 
     /**

@@ -43,7 +43,7 @@ class TaskInstanceController extends Controller
 
         $request->user()->taskInstances()->create($validated);
 
-        return redirect()->route('tasks.list');
+        return redirect()->route('instances.list');
     }
 
     /**
@@ -54,7 +54,7 @@ class TaskInstanceController extends Controller
         /** @var Collection<int, TaskComponent> $components */
         $components = $taskInstance->components;
 
-        return Inertia::render('tasks/showTask', [
+        return Inertia::render('instances/showTask', [
             'task' => [
                 'id' => $taskInstance->id,
                 'title' => $taskInstance->title,

@@ -25,11 +25,11 @@ defineProps<{
 
 <template>
     <div class="p-2">
-        <h1>Definitions</h1>
+        <h1 class="text-2xl">Definitions</h1>
         <div v-if="definitions.length === 0">You have no definitions yet!</div>
-        <div v-else>
-            <div v-for="task in definitions" :key="task.id">
-                <DefinitionCard :task="task" />
+        <div v-else class="my-2">
+            <div v-for="task in definitions" :key="task.id" class="w-1/2">
+                <DefinitionCard :task="task" class="my-2"/>
             </div>
         </div>
     </div>

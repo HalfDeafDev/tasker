@@ -22,7 +22,7 @@ class TaskComponentController extends Controller
         $parent = match ($validated['task_entity_type']) {
             'instance' => [
                 'task' => TaskInstance::find($validated['task_id']),
-                'route' => 'tasks.show',
+                'route' => 'instances.show',
             ],
             'definition' => [
                 'task' => TaskDefinition::find($validated['task_id']),

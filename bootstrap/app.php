@@ -8,9 +8,14 @@ use Illuminate\Foundation\Configuration\Middleware;
 use Illuminate\Http\Middleware\AddLinkHeadersForPreloadedAssets;
 use Illuminate\Http\Request;
 
+
 return Application::configure(basePath: dirname(__DIR__))
     ->withRouting(
-        web: __DIR__.'/../routes/web.php',
+        web: array_merge(
+            glob(__DIR__.'/../routes/*.php'),
+            glob(__DIR__.'/../routes/web/*.php'),
+            glob(__DIR__.'/../routes/web/components/*.php')
+        ),
         commands: __DIR__.'/../routes/console.php',
         health: '/up',
     )
