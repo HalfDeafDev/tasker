@@ -4,7 +4,7 @@
 //     name: string
 // }
 
-import DefinitionCard from '@/components/DefinitionCard.vue';
+import InstanceCard from '@/components/InstanceCard.vue';
 
 type Task = {
     id: string;
@@ -20,10 +20,10 @@ defineProps<{
 <template>
     <div class="p-2">
         <h1 class="text-2xl">Tasks</h1>
-        <div v-if="instances.length === 0">You have no tasks yet!</div>
+        <div v-if="instances.length === 0">You have no tasks yet?!</div>
         <div v-else class="my-2">
             <div v-for="task in instances" :key="task.id" class="w-1/2">
-                <DefinitionCard :task="task" class="my-2"/>
+                <InstanceCard :task="task" class="my-2"/>
             </div>
         </div>
     </div>

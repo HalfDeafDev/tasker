@@ -54,7 +54,7 @@ class TaskInstanceController extends Controller
         /** @var Collection<int, TaskComponent> $components */
         $components = $taskInstance->components;
 
-        return Inertia::render('instances/showTask', [
+        return Inertia::render('instances/show', [
             'task' => [
                 'id' => $taskInstance->id,
                 'title' => $taskInstance->title,
