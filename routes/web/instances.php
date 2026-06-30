@@ -9,15 +9,9 @@ Route::middleware(['auth', 'verified'])->group(function () {
         return Inertia::render('dev/TaskInstanceCreate');
     })->name('instances.create');
 
-    Route::get('instances', function (Request $request) {
-        $tasks = $request->user()->taskInstances()->get();
-        return Inertia::render(
-            'instances/list',
-            [
-                'instances' => $tasks,
-            ]
-        );
-    })->name('instances.list');
+    Route::get('instances',
+        [TaskInstanceController::class, 'index']
+    )->name('instances.list');
 
     Route::post('instances/create/one-off',
         [TaskInstanceController::class, 'storeOneOff'])
