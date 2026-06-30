@@ -4,7 +4,7 @@
 //     name: string
 // }
 
-import { Link } from '@inertiajs/vue3';
+import DefinitionCard from '@/components/DefinitionCard.vue';
 
 type Task = {
     id: string;
@@ -18,14 +18,13 @@ defineProps<{
 </script>
 
 <template>
-    <div v-if="instances.length === 0">You have no tasks yet!</div>
-    <div v-else>
-        <div v-for="instance in instances" :key="instance.id">
-            <p>
-                <Link :href="`/tasks/${instance.id}`">
-                    ({{ instance.completed }}) {{ instance.title }}
-                </Link>
-            </p>
+    <div class="p-2">
+        <h1 class="text-2xl">Tasks</h1>
+        <div v-if="instances.length === 0">You have no tasks yet!</div>
+        <div v-else class="my-2">
+            <div v-for="task in instances" :key="task.id" class="w-1/2">
+                <DefinitionCard :task="task" class="my-2"/>
+            </div>
         </div>
     </div>
 </template>
