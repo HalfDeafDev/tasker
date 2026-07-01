@@ -6,9 +6,9 @@ use App\Enums\TaskTypes;
 use App\Models\TaskComponent;
 use App\Models\TaskInstance;
 use App\Models\TaskType;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
-use Illuminate\Database\Eloquent\Collection;
 
 class TaskInstanceController extends Controller
 {
@@ -17,7 +17,21 @@ class TaskInstanceController extends Controller
      */
     public function index(Request $request)
     {
-        //
+        $tasks = $request->user()->taskInstances()->get();
+
+
+        return Inertia::render(
+            'instances/list',
+            [
+                'instances' => $tasks,
+                'breadcrumbs' => [
+                    [
+                        'title' => 'Tasks',
+                        'href' => route('instances.list'),
+                    ],
+                ],
+            ]
+        );
     }
 
     /**
@@ -69,6 +83,16 @@ class TaskInstanceController extends Controller
                         'sort_order' => $component->sort_order,
                         'content' => $component->content,
                     ]),
+            ],
+            'breadcrumbs' => [
+                [
+                    'title' => 'Tasks',
+                    'href' => route('instances.list'),
+                ],
+                [
+                    'title' => $taskInstance->title,
+                    'href' => route('instances.show', $taskInstance),
+                ],
             ],
         ]);
     }

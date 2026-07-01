@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { useForm } from '@inertiajs/vue3';
-import { oneOff } from '@/routes/tasks/create';
+import { oneOff } from '@/routes/instances/create';
 
 const form = useForm(
     {

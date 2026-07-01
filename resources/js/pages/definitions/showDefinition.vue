@@ -1,9 +1,4 @@
 <script setup lang="ts">
-// type TaskType = {
-//     id: string
-//     name: string
-// }
-
 import { useForm } from '@inertiajs/vue3';
 import TaskComponentViewer from '@/components/task_components/TaskComponentViewer.vue';
 import { instantiate } from '@/routes/definitions';

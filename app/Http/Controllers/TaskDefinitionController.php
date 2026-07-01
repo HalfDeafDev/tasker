@@ -22,6 +22,12 @@ class TaskDefinitionController extends Controller
             'definitions/list',
             [
                 'definitions' => $definitions,
+                'breadcrumbs' => [
+                    [
+                        'title' => 'Definitions',
+                        'href' => route('definitions.list'),
+                    ],
+                ],
             ]
         );
     }
@@ -102,6 +108,16 @@ class TaskDefinitionController extends Controller
             'definitions/showDefinition',
             [
                 'definition' => $data,
+                'breadcrumbs' => [
+                    [
+                        'title' => 'Definitions',
+                        'href' => route('definitions.list'),
+                    ],
+                    [
+                        'title' => $definition->title,
+                        'href' => route('definitions.show', $definition),
+                    ],
+                ],
             ]
         );
     }

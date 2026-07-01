@@ -1,3 +1,5 @@
+import { RouteDefinition } from '@/wayfinder';
+
 export type Appearance = 'light' | 'dark' | 'system';
 export type ResolvedAppearance = 'light' | 'dark';
 
@@ -7,3 +9,8 @@ export type FlashToast = {
     type: 'success' | 'info' | 'warning' | 'error';
     message: string;
 };
+
+export type Breadcrumb = {
+    title: string;
+    href: RouteDefinition<any>
+}

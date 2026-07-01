@@ -62,9 +62,22 @@ class DatabaseSeeder extends Seeder
             'task_type_id' => $oneOff,
         ]);
 
-        $user->taskDefinitions()->create([
+        $secondDefinition = $user->taskDefinitions()->create([
             'title' => 'A Second Definition',
             'task_type_id' => $oneOff,
         ]);
+
+        $secondDescription = DescriptionComponent::create([
+            'body' => 'This is an example of a task definition.',
+        ]);
+
+        $secondComponent = $secondDefinition->components()->make([
+            'task_component_type_id' => TaskComponentTypes::Description->id(),
+            'sort_order' => $task->components()->count() + 1,
+        ]);
+
+        $secondComponent->content()->associate($secondDescription);
+
+        $secondComponent->save();
     }
 }
