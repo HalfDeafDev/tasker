@@ -41,4 +41,26 @@ class TaskComponentController extends Controller
 
         return redirect()->route($parent['route'], $parent['task']);
     }
+
+    public function storeDueDateRule(Request $request, ComponentCreationService $componentCreationService)
+    {
+        $validated = $request->validate([
+            'amount' => ['required', 'numeric'],
+            'unit' => ['required', 'string'],
+            'task_id' => ['required', 'uuid'],
+        ]);
+
+        $task = TaskDefinition::find($validated['task_id']);
+
+        if (! $task) {
+            throw ValidationException::withMessages([
+                'task_id' => 'The selected task id is invalid.',
+            ]);
+        }
+
+        $componentCreationService->
+            createFromConfig($validated, TaskComponentTypes::DueDateRule, $task);
+
+        return redirect()->route('definitions.show', $task);
+    }
 }

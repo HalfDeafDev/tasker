@@ -16,16 +16,8 @@ class TaskComponentTypeSeeder extends Seeder
      */
     public function run(): void
     {
-        //
-        $taskComponentTypes = [
-            [
-                'slug' => TaskComponentTypes::Description,
-                'name' => 'Description',
-            ],
-        ];
-
-        foreach ($taskComponentTypes as $taskComponentType) {
-            TaskComponentType::updateOrCreate($taskComponentType);
-        } //
+        foreach (TaskComponentTypes::cases() as $taskComponentType) {
+            TaskComponentType::updateOrCreate($taskComponentType->seed());
+        }
     }
 }

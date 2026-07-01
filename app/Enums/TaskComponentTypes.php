@@ -7,11 +7,13 @@ use App\Models\TaskComponentType;
 enum TaskComponentTypes: string
 {
     case Description = 'description';
+    case DueDateRule = 'dueDateRule';
 
     public function name(): string
     {
         return match ($this) {
             self::Description => 'Description',
+            self::DueDateRule => 'Due Date Rule',
         };
     }
 
