@@ -12,7 +12,9 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('due_date_rules', function (Blueprint $table) {
-            $table->id();
+            $table->uuid('id')->primary();
+            $table->foreignId('task type_id')->constrained('task_types')->restrictOnDelete();
+            $table->string('')
             $table->timestamps();
         });
     }
