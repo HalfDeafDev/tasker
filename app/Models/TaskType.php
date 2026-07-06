@@ -7,8 +7,8 @@ use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
+
 /**
- * @mixin IdeHelperTaskType
  * @property string $id
  * @property string $name
  * @property string $slug

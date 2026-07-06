@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Enums\TaskTypes;
 use App\Models\TaskDefinition;
-use App\Models\TaskType;
+use App\Models\TimeUnit;
 use App\Services\Tasks\TaskCreationService;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -72,7 +72,7 @@ class TaskDefinitionController extends Controller
             'task_type' => ['required', 'string', 'exists:task_types,slug'],
         ]);
 
-        $taskTypeId = TaskType::where('slug', $validate['task_type'])->value('id');
+        $taskTypeId = TimeUnit::where('slug', $validate['task_type'])->value('id');
 
         $definition = [
             'title' => $validate['title'],

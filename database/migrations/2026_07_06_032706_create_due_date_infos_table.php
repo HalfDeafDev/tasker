@@ -11,11 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('due_date_rules', function (Blueprint $table) {
+        Schema::create('due_date_infos', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->integer('amount');
-            $table->string('unit');
-            $table->foreign('unit')->references('slug')->on('time_units')->restrictOnDelete();
             $table->timestamps();
         });
     }
@@ -25,6 +22,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('due_date_rules');
+        Schema::dropIfExists('due_date_infos');
     }
 };

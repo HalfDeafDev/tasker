@@ -25,7 +25,7 @@ use Illuminate\Database\Eloquent\Relations\MorphMany;
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\TaskComponent> $components
  * @property-read int|null $components_count
  * @property-read \App\Models\TaskDefinition|null $definition
- * @property-read \App\Models\TaskType $taskType
+ * @property-read \App\Models\TimeUnit $taskType
  * @property-read \App\Models\User $user
  * @method static \Illuminate\Database\Eloquent\Builder<static>|TaskInstance newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|TaskInstance newQuery()
@@ -60,7 +60,7 @@ class TaskInstance extends Model implements HasTaskComponents
 
     public function taskType(): BelongsTo
     {
-        return $this->belongsTo(TaskType::class);
+        return $this->belongsTo(TimeUnit::class);
     }
 
     public function user(): BelongsTo

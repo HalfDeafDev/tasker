@@ -4,8 +4,11 @@ namespace Database\Seeders;
 
 use App\Enums\TaskComponentTypes;
 use App\Enums\TaskTypes;
+use App\Enums\TimeUnits;
 use App\Models\DescriptionComponent;
+use App\Models\DueDateRule;
 use App\Models\TaskComponent;
+use App\Models\TimeUnit;
 use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -33,6 +36,7 @@ class DatabaseSeeder extends Seeder
         ]);
 
         $this->call([
+            TimeUnitSeeder::class,
             TaskComponentTypeSeeder::class,
             TaskTypeSeeder::class,
         ]);
@@ -57,27 +61,36 @@ class DatabaseSeeder extends Seeder
 
         $component->save();
 
-        $user->taskDefinitions()->create([
-            'title' => 'A Task Definition',
+        $aTask = $user->taskDefinitions()->create([
+            'title' => 'A one-off task definition',
             'task_type_id' => $oneOff,
         ]);
 
-        $secondDefinition = $user->taskDefinitions()->create([
-            'title' => 'A Second Definition',
-            'task_type_id' => $oneOff,
+        $descriptionInfo = DescriptionComponent::create([
+            'body' => 'This is an example of a task definition with a description..',
         ]);
 
-        $secondDescription = DescriptionComponent::create([
-            'body' => 'This is an example of a task definition.',
-        ]);
-
-        $secondComponent = $secondDefinition->components()->make([
+        $descriptionComponent = $aTask->components()->make([
             'task_component_type_id' => TaskComponentTypes::Description->id(),
             'sort_order' => $task->components()->count() + 1,
         ]);
 
-        $secondComponent->content()->associate($secondDescription);
+        $descriptionComponent->content()->associate($descriptionInfo);
 
-        $secondComponent->save();
+        $descriptionComponent->save();
+
+        $dueDateRuleInfo = DueDateRule::create([
+            'amount' => 2,
+            'unit' => TimeUnits::Day,
+        ]);
+
+        $dueDateRuleComponent = $aTask->components()->make([
+            'task_component_type_id' => TaskComponentTypes::DueDateRule->id(),
+            'sort_order' => $task->components()->count() + 1,
+        ]);
+
+        $dueDateRuleComponent->content()->associate($dueDateRuleInfo);
+
+        $dueDateRuleComponent->save();
     }
 }

@@ -5,7 +5,7 @@ namespace Database\Seeders;
 use App\Enums\TaskTypes;
 use App\Enums\TaskComponentTypes;
 use App\Models\TaskComponentType;
-use App\Models\TaskType;
+use App\Models\TimeUnit;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 

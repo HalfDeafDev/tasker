@@ -19,7 +19,7 @@ namespace App\Models{
  * @property int $user_id
  * @property \Carbon\CarbonImmutable|null $created_at
  * @property \Carbon\CarbonImmutable|null $updated_at
- * @property-read \App\Models\TaskType $taskType
+ * @property-read \App\Models\TimeUnit $taskType
  * @property-read \App\Models\User $user
  * @method static \Illuminate\Database\Eloquent\Builder<static>|TaskDefinition newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|TaskDefinition newQuery()
@@ -50,7 +50,7 @@ namespace App\Models{
  * @property \Carbon\CarbonImmutable|null $created_at
  * @property \Carbon\CarbonImmutable|null $updated_at
  * @property-read \App\Models\TaskDefinition $taskDefinition
- * @property-read \App\Models\TaskType $taskType
+ * @property-read \App\Models\TimeUnit $taskType
  * @property-read \App\Models\User $user
  * @method static \Illuminate\Database\Eloquent\Builder<static>|TaskInstance newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|TaskInstance newQuery()
@@ -81,14 +81,14 @@ namespace App\Models{
  * @property \Carbon\CarbonImmutable|null $updated_at
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\TaskDefinition> $taskDefinitions
  * @property-read int|null $task_definitions_count
- * @method static \Illuminate\Database\Eloquent\Builder<static>|TaskType newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder<static>|TaskType newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder<static>|TaskType query()
- * @method static \Illuminate\Database\Eloquent\Builder<static>|TaskType whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|TaskType whereDeletedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|TaskType whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|TaskType whereName($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|TaskType whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|TimeUnit newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|TimeUnit newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|TimeUnit query()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|TimeUnit whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|TimeUnit whereDeletedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|TimeUnit whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|TimeUnit whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|TimeUnit whereUpdatedAt($value)
  * @mixin \Eloquent
  */
 	#[\AllowDynamicProperties]

@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Enums\TaskTypes;
 use App\Models\TaskComponent;
 use App\Models\TaskInstance;
-use App\Models\TaskType;
+use App\Models\TimeUnit;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -50,7 +50,7 @@ class TaskInstanceController extends Controller
             'completed' => ['sometimes', 'boolean'],
         ]);
 
-        $validated['task_type_id'] = TaskType::where(
+        $validated['task_type_id'] = TimeUnit::where(
             'name', TaskTypes::OneOff)->value('id');
 
         $validated['completed'] = $validated['completed'] ?? false;

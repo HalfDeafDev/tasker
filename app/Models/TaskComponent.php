@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
+use LogicException;
 
 /**
  * @property string $id
@@ -77,8 +78,8 @@ class TaskComponent extends Model
     {
         $content = $this->content;
 
-        if (! $content instanceof DescriptionComponent) {
-            throw new LogicException('Expected Description Type Component');
+        if (! $content instanceof $class) {
+            throw new LogicException('Expected '. $class .' Component');
         }
 
         return $content;

@@ -2,8 +2,8 @@
 
 namespace Database\Seeders;
 
-use App\Models\TaskType;
 use App\Enums\TaskTypes;
+use App\Models\TaskType;
 use Illuminate\Database\Seeder;
 
 class TaskTypeSeeder extends Seeder
