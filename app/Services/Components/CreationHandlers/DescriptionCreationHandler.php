@@ -4,7 +4,7 @@ namespace App\Services\Components\CreationHandlers;
 
 use App\Enums\TaskComponentTypes;
 use App\Models\Contracts\HasTaskComponents;
-use App\Models\DescriptionComponent;
+use App\Models\DescriptionInfo;
 use App\Models\TaskComponent;
 use Illuminate\Support\Facades\Validator;
 use LogicException;
@@ -26,8 +26,8 @@ class DescriptionCreationHandler implements CreatesComponentFromConfig, CreatesC
                 'DescriptionCreationHandler received a component that is not of type '.TaskComponentTypes::Description->slug().'.');
         }
 
-        /** @var DescriptionComponent $content */
-        $content = $component->assertContentIs(DescriptionComponent::class);
+        /** @var DescriptionInfo $content */
+        $content = $component->assertContentIs(DescriptionInfo::class);
 
         return $this->createFromConfig($task, [
             'body' => $content->body,
@@ -42,7 +42,7 @@ class DescriptionCreationHandler implements CreatesComponentFromConfig, CreatesC
 
         $validated = $validator->validate();
 
-        $descriptionComponent = DescriptionComponent::create([
+        $descriptionComponent = DescriptionInfo::create([
             'body' => $validated['body'],
         ]);
 

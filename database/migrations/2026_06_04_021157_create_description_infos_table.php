@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('description_components', function (Blueprint $table) {
+        Schema::create('description_infos', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->longText('body');
             $table->timestamps();
@@ -23,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('description_components');
+        Schema::dropIfExists('description_infos');
     }
 };

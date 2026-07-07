@@ -5,7 +5,7 @@ namespace Database\Seeders;
 use App\Enums\TaskComponentTypes;
 use App\Enums\TaskTypes;
 use App\Enums\TimeUnits;
-use App\Models\DescriptionComponent;
+use App\Models\DescriptionInfo;
 use App\Models\DueDateRule;
 use App\Models\TaskComponent;
 use App\Models\TimeUnit;
@@ -48,7 +48,7 @@ class DatabaseSeeder extends Seeder
             'task_type_id' => $oneOff,
         ]);
 
-        $taskDescription = DescriptionComponent::create([
+        $taskDescription = DescriptionInfo::create([
             'body' => 'Show me you know how to do something simple.',
         ]);
 
@@ -66,7 +66,7 @@ class DatabaseSeeder extends Seeder
             'task_type_id' => $oneOff,
         ]);
 
-        $descriptionInfo = DescriptionComponent::create([
+        $descriptionInfo = DescriptionInfo::create([
             'body' => 'This is an example of a task definition with a description..',
         ]);
 

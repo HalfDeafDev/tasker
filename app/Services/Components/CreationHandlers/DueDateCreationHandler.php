@@ -3,10 +3,13 @@
 namespace App\Services\Components\CreationHandlers;
 
 use App\Enums\TaskComponentTypes;
+use App\Enums\TimeUnits;
 use App\Models\Contracts\HasTaskComponents;
-use App\Models\DescriptionComponent;
+use App\Models\DescriptionInfo;
+use App\Models\DueDateInfo;
 use App\Models\DueDateRule;
 use App\Models\TaskComponent;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Validator;
 use LogicException;
 
@@ -45,19 +48,31 @@ class DueDateCreationHandler implements CreatesComponentFromConfig, CreatesCompo
 
         $validated = $validator->validate();
 
-        $descriptionComponent = DescriptionComponent::create([
-            'body' => $validated['body'],
+        $today = Carbon::today();
+
+        $dueDate = match ($validated['unit']) {
+            TimeUnits::Second => $today->addSeconds($config['amount']),
+            TimeUnits::Minute => $today->addMinutes($config['amount']),
+            TimeUnits::Hour => $today->addHours($config['amount']),
+            TimeUnits::Day => $today->addDays($config['amount']),
+            TimeUnits::Week => $today->addWeeks($config['amount']),
+            TimeUnits::Month => $today->addMonths($config['amount']),
+            TimeUnits::Year => $today->addYears($config['amount']),
+        };
+
+        $info = DueDateInfo::create([
+            'due_date' => $dueDate,
         ]);
 
-        $descriptionType = TaskComponentTypes::Description->model();
+        $typeModel = TaskComponentTypes::DueDate->model();
 
         /** @var TaskComponent $component */
         $component = $task->components()->make([
-            'task_component_type_id' => $descriptionType->id,
+            'task_component_type_id' => $typeModel->id,
             'sort_order' => $task->components()->count(),
         ]);
 
-        $component->content()->associate($descriptionComponent);
+        $component->content()->associate($info);
 
         $component->save();
 

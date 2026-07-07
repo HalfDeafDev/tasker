@@ -15,6 +15,8 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder<static>|DueDateInfo whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|DueDateInfo whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|DueDateInfo whereUpdatedAt($value)
+ * @property string $due_date
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|DueDateInfo whereDueDate($value)
  * @mixin \Eloquent
  */
 class DueDateInfo extends Model

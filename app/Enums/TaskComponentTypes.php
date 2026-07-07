@@ -8,12 +8,14 @@ enum TaskComponentTypes: string
 {
     case Description = 'description';
     case DueDateRule = 'dueDateRule';
+    case DueDate = 'dueDate';
 
     public function name(): string
     {
         return match ($this) {
             self::Description => 'Description',
             self::DueDateRule => 'Due Date Rule',
+            self::DueDate => 'Due Date',
         };
     }
 
