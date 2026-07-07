@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('due_date_infos', function (Blueprint $table) {
             $table->uuid('id')->primary();
+            $table->dateTimeTz('due_date');
             $table->timestamps();
         });
     }
