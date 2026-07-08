@@ -3,30 +3,29 @@
 namespace App\Services\Components\CreationHandlers;
 
 use App\Enums\TaskComponentTypes;
+use App\Enums\TaskForm;
 use App\Models\TaskComponent;
-use App\Models\TaskComponentType;
 
 class ComponentCreationResolver
 {
-    /**
-     * Create a new class instance.
-     */
-    public function __construct()
+
+
+    private function mapping(TaskComponentTypes $taskComponentTypes): CreatesComponentFromConfig|CreatesComponentFromReference
     {
-        //
+        return app(match ($taskComponentTypes) {
+            TaskComponentTypes::Description => DescriptionCreationHandler::class,
+            TaskComponentTypes::DueDateRule => DueDateRuleHandler::class,
+            default => throw new \InvalidArgumentException("Unknown component type & form combination: {$taskComponentTypes->name}"),
+        });
     }
 
     public function forComponent(TaskComponent $taskComponent): CreatesComponentFromReference
     {
-        return match ($taskComponent->type) {
-            TaskComponentTypes::Description => app(DescriptionCreationHandler::class),
-        };
+        return $this->mapping(TaskComponentTypes::from($taskComponent->componentType->slug));
     }
 
     public function forComponentType(TaskComponentTypes $taskComponentTypes): CreatesComponentFromConfig
     {
-        return match ($taskComponentTypes) {
-            TaskComponentTypes::Description => app(DescriptionCreationHandler::class),
-        };
+        return $this->mapping($taskComponentTypes);
     }
 }

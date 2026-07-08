@@ -13,7 +13,7 @@ use Carbon\Carbon;
 use Illuminate\Support\Facades\Validator;
 use LogicException;
 
-class DueDateCreationHandler implements CreatesComponentFromConfig, CreatesComponentFromReference
+class DueDateRuleHandler implements CreatesComponentFromConfig, CreatesComponentFromReference
 {
     /**
      * Create a new class instance.
@@ -50,7 +50,7 @@ class DueDateCreationHandler implements CreatesComponentFromConfig, CreatesCompo
 
         $today = Carbon::today();
 
-        $dueDate = match ($validated['unit']) {
+        $dueDate = match (TimeUnits::from($validated['unit'])) {
             TimeUnits::Second => $today->addSeconds($config['amount']),
             TimeUnits::Minute => $today->addMinutes($config['amount']),
             TimeUnits::Hour => $today->addHours($config['amount']),

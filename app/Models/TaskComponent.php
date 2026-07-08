@@ -37,6 +37,7 @@ use LogicException;
  * @method static \Illuminate\Database\Eloquent\Builder<static>|TaskComponent whereSortOrder($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|TaskComponent whereTaskComponentTypeId($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|TaskComponent whereUpdatedAt($value)
+ * @property-read \App\Models\TaskComponentType $type
  * @mixin \Eloquent
  */
 class TaskComponent extends Model
