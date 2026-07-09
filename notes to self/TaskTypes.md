@@ -10,16 +10,24 @@ or measure over time, where completion rhythm
 matters more than the individual task instance.
 
 - Streak Breakpoint (DateTime)
-- Streak Count
+- Current Streak Count
 - Top Streak
-  - DateTime
+  - Start Date
+  - End Date
   - Streak Count
+  - Number of Days
+- Goal
+  - 3 times per week
+- Frequency Limit
+  - 1 time per day
 
 ## Recurring
 A task that produces instances based
 on calendar/time/completion rules. Example:
 "clean filter 30 days after I last did it",
 "every Monday at 8 AM".
+
+- 
 
 A task whose next instance can be generated from a known schedule.
 
