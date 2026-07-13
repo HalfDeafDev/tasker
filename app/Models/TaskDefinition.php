@@ -53,6 +53,11 @@ class TaskDefinition extends Model implements HasTaskComponents
         return $this->belongsTo(User::class);
     }
 
+    public function frequencyRuleSet(): MorphMany
+    {
+        return $this->morphMany(FrequencyRuleSet::class, 'frequency_owner');
+    }
+
     /**
      * @return MorphMany<TaskComponent, $this>
      */

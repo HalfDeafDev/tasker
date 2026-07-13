@@ -7,6 +7,7 @@ use Carbon\CarbonImmutable;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 use LogicException;
 
@@ -63,6 +64,11 @@ class TaskComponent extends Model
     public function componentType(): BelongsTo
     {
         return $this->belongsTo(TaskComponentType::class, 'task_component_type_id');
+    }
+
+    public function frequencyRuleSet(): MorphMany
+    {
+        return $this->morphMany(FrequencyRuleSet::class, 'frequency_owner');
     }
 
     public function isType(TaskComponentTypes $type): bool

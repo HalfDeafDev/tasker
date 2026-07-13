@@ -2,15 +2,34 @@
 
 ## Frequency Types
 
-* Day
-  * Mon, Tue, Wed, etc.
-* Period
-  * Day, Week, Month
-* Time
-  * 2am
+### Day
+#### Value
+Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday
+#### Num
+| Value | Description |
+|-------|-------------|
+| -n | n to last (or last) |
+| 0 | Standard |
+| +n | nth of the month |
+
+### Time
+#### Value
+0-24 (0 == 24)
+#### Num
+| Value | Description |
+|-------|-------------|
+| 0 | AM          |
+| 1 | PM           |
+
+### Period
+#### Value
+Minute, Hour, Day, Week, Month, Quarter, HalfAnnual, Annual
+#### Num
+| Value | Description |
+|-------|-----------|
+| n | Interval  |
 
 ## Frequency Sets
-
 ### Every Monday, Tuesday, and Thursday at 2am (every week)
 
 | Type   | Value    | Num |
@@ -32,6 +51,7 @@
 | Type   | Value    | Num |
 |--------|----------|-----|
 | Day    | Monday   | 1   |
+
 
 ## Frequency Criteria
 
