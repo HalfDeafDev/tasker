@@ -18,11 +18,15 @@ use Illuminate\Database\Eloquent\Relations\MorphTo;
  * @method static \Illuminate\Database\Eloquent\Builder<static>|FrequencyRuleSet whereUpdatedAt($value)
  * @mixin \Eloquent
  */
-class FrequencyRuleSet extends Model
+class FrequencySetRule extends Model
 {
-    /**
-     * @return MorphTo<TaskDefinition|TaskComponent, $this>
-     */
+    protected $fillable = [
+        'frequency_rule_set_uuid',
+        'frequency_type',
+        'frequency_value',
+        'frequency_modifier',
+    ];
+
     public function frequencyOwner(): MorphTo
     {
         return $this->morphTo('frequency_owner');

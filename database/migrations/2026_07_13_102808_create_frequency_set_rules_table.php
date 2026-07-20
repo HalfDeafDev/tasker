@@ -11,14 +11,20 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('frequency_criteria_rules', function (Blueprint $table) {
+        Schema::create('frequency_set_rules', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->foreignUuid('frequency_criteria_uuid')
-                ->constrained('frequency_criterias')
-                ->cascadeOnDelete();
             $table->foreignUuid('frequency_rule_set_uuid')
                 ->constrained('frequency_rule_sets')
                 ->cascadeOnDelete();
+            $table->string('frequency_type');
+            $table->foreign('frequency_type')
+                ->references('slug')
+                ->on('frequency_types');
+            /*
+             * FrequencyPeriodValues | FrequencyDayValues
+             */
+            $table->integer('frequency_value');
+            $table->integer('modifier');
             $table->timestamps();
         });
     }
@@ -28,6 +34,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('frequency_criteria_rules');
+        Schema::dropIfExists('frequency_set_rules');
     }
 };

@@ -39,6 +39,8 @@ use LogicException;
  * @method static \Illuminate\Database\Eloquent\Builder<static>|TaskComponent whereTaskComponentTypeId($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|TaskComponent whereUpdatedAt($value)
  * @property-read \App\Models\TaskComponentType $type
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\FrequencyRuleSet> $frequencyRuleSet
+ * @property-read int|null $frequency_rule_set_count
  * @mixin \Eloquent
  */
 class TaskComponent extends Model

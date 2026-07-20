@@ -11,12 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('frequency_rule_sets', function (Blueprint $table) {
-            $table->uuid('id')->primary();
-            /*
-             * TaskDefinition | Component
-             */
-            $table->uuidMorphs('rule_set_owner');
+        Schema::create('frequency_period_values', function (Blueprint $table) {
+            $table->integer('id')->primary();
+            $table->string('name')->unique();
+            $table->string('slug')->unique();
             $table->timestamps();
         });
     }
@@ -26,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('frequency_rule_sets');
+        Schema::dropIfExists('frequency_period_values');
     }
 };

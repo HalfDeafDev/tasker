@@ -11,9 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('frequency_criterias', function (Blueprint $table) {
-            $table->uuid('id')->primary();
-            $table->string('name');
+        Schema::create('frequency_day_values', function (Blueprint $table) {
+            $table->integer('id')->primary();
+            $table->string('name')->unique();
             $table->string('slug')->unique();
             $table->timestamps();
         });
@@ -24,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('frequency_criterias');
+        Schema::dropIfExists('frequency_day_values');
     }
 };

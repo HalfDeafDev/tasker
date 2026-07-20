@@ -35,6 +35,8 @@ use Illuminate\Database\Eloquent\Relations\MorphMany;
  * @method static \Illuminate\Database\Eloquent\Builder<static>|TaskDefinition whereTitle($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|TaskDefinition whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|TaskDefinition whereUserId($value)
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\FrequencyRuleSet> $frequencyRuleSet
+ * @property-read int|null $frequency_rule_set_count
  * @mixin \Eloquent
  */
 #[Fillable('title', 'task_type_id')]
