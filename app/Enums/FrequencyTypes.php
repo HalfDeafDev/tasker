@@ -7,27 +7,24 @@ use App\Models\TaskType;
 
 enum FrequencyTypes: string
 {
-    case Day = 'day';
-    case Period = 'period';
-    case Time = 'time';
+    case Day = 'Day';
+    case Period = 'Period';
+    case Time = 'Time';
 
     public function name(): string
     {
-        return match ($this) {
-            self::Day => 'Day',
-            self::Period => 'Period',
-            self::Time => 'Time',
-        };
+        return $this->value;
     }
 
     public function slug(): string
     {
-        return $this->value;
+        return str_replace(' ', '-', strtolower($this->value));
     }
 
     public function seed(): array
     {
         return [
+            'id' => $this->id(),
             'name' => $this->name(),
             'slug' => $this->slug(),
         ];
@@ -35,8 +32,10 @@ enum FrequencyTypes: string
 
     public function id(): string
     {
-        return FrequencyType::where('slug', $this->slug())
-            ->firstOrFail()
-            ->id;
+        return match ($this) {
+            self::Day => 1,
+            self::Period => 2,
+            self::Time => 3,
+        };
     }
 }

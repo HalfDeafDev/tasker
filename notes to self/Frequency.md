@@ -8,9 +8,9 @@ Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday
 #### Num
 | Value | Description |
 |-------|-------------|
-| -n | n to last (or last) |
-| 0 | Standard |
 | +n | nth of the month |
+| 0 | Standard |
+| -n | n to last (or last) |
 
 ### Time
 #### Value
@@ -25,6 +25,8 @@ Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday
 #### Value
 Minute, Hour, Day, Week, Month, Quarter, HalfAnnual, Annual
 #### Num
+"Every n..."
+
 | Value | Description |
 |-------|-----------|
 | n | Interval  |
@@ -40,7 +42,7 @@ Minute, Hour, Day, Week, Month, Quarter, HalfAnnual, Annual
 | Time   | 2        | 0   |
 | Period | Week     | 1   |
 
-### 3 times per week
+### Every 3 weeks
 
 | Type   | Value    | Num |
 |--------|----------|-----|

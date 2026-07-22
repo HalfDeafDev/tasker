@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 
@@ -16,10 +17,24 @@ use Illuminate\Database\Eloquent\Relations\MorphTo;
  * @method static \Illuminate\Database\Eloquent\Builder<static>|FrequencyRuleSet whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|FrequencyRuleSet whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|FrequencyRuleSet whereUpdatedAt($value)
+ * @property string $frequency_rule_set_uuid
+ * @property string $frequency_type
+ * @property int $frequency_value
+ * @property int $modifier
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|FrequencySetRule whereFrequencyRuleSetUuid($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|FrequencySetRule whereFrequencyType($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|FrequencySetRule whereFrequencyValue($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|FrequencySetRule whereModifier($value)
+ * @property string $frequency_rule_set_id
+ * @property int $frequency_modifier
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|FrequencySetRule whereFrequencyModifier($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|FrequencySetRule whereFrequencyRuleSetId($value)
  * @mixin \Eloquent
  */
 class FrequencySetRule extends Model
 {
+    use HasUuids;
+
     protected $fillable = [
         'frequency_rule_set_uuid',
         'frequency_type',

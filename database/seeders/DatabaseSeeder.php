@@ -2,11 +2,16 @@
 
 namespace Database\Seeders;
 
+use App\Enums\FrequencyPeriodValues;
+use App\Enums\FrequencyTypes;
 use App\Enums\TaskComponentTypes;
 use App\Enums\TaskTypes;
 use App\Enums\TimeUnits;
 use App\Models\DescriptionInfo;
 use App\Models\DueDateRule;
+use App\Models\FrequencyPeriodValue;
+use App\Models\FrequencyRuleSet;
+use App\Models\FrequencySetRule;
 use App\Models\TaskComponent;
 use App\Models\TimeUnit;
 use App\Models\User;
@@ -39,6 +44,7 @@ class DatabaseSeeder extends Seeder
             TimeUnitSeeder::class,
             TaskComponentTypeSeeder::class,
             TaskTypeSeeder::class,
+            FrequencySeeder::class,
         ]);
 
         $oneOff = TaskTypes::OneOff->id();
@@ -61,7 +67,7 @@ class DatabaseSeeder extends Seeder
 
         $component->save();
 
-        $aTask = $user->taskDefinitions()->create([
+        $aDefinition = $user->taskDefinitions()->create([
             'title' => 'A one-off task definition',
             'task_type_id' => $oneOff,
         ]);
@@ -70,7 +76,7 @@ class DatabaseSeeder extends Seeder
             'body' => 'This is an example of a task definition with a description..',
         ]);
 
-        $descriptionComponent = $aTask->components()->make([
+        $descriptionComponent = $aDefinition->components()->make([
             'task_component_type_id' => TaskComponentTypes::Description->id(),
             'sort_order' => $task->components()->count() + 1,
         ]);
@@ -84,7 +90,7 @@ class DatabaseSeeder extends Seeder
             'unit' => TimeUnits::Day,
         ]);
 
-        $dueDateRuleComponent = $aTask->components()->make([
+        $dueDateRuleComponent = $aDefinition->components()->make([
             'task_component_type_id' => TaskComponentTypes::DueDateRule->id(),
             'sort_order' => $task->components()->count() + 1,
         ]);
@@ -92,5 +98,21 @@ class DatabaseSeeder extends Seeder
         $dueDateRuleComponent->content()->associate($dueDateRuleInfo);
 
         $dueDateRuleComponent->save();
+
+        $frequencyRuleSet = FrequencyRuleSet::make();
+        $frequencyRuleSet->frequencyOwner()->associate($aDefinition);
+
+        $frequencyRuleSet->save();
+
+        $ruleSetUuid = $frequencyRuleSet->id;
+
+        $fsrEveryTwoWeeks = FrequencySetRule::create([
+            'frequency_rule_set_id' => $ruleSetUuid,
+            'frequency_type' => FrequencyTypes::Period->slug(),
+            'frequency_value' => FrequencyPeriodValues::Week->id(),
+            'frequency_modifier' => 2,
+        ]);
+
+
     }
 }

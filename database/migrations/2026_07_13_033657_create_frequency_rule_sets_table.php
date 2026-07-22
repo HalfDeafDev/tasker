@@ -16,7 +16,7 @@ return new class extends Migration
             /*
              * TaskDefinition | Component
              */
-            $table->uuidMorphs('rule_set_owner');
+            $table->uuidMorphs('frequency_owner');
             $table->timestamps();
         });
     }

@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('frequency_set_rules', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->foreignUuid('frequency_rule_set_uuid')
+            $table->foreignUuid('frequency_rule_set_id')
                 ->constrained('frequency_rule_sets')
                 ->cascadeOnDelete();
             $table->string('frequency_type');
@@ -24,7 +24,7 @@ return new class extends Migration
              * FrequencyPeriodValues | FrequencyDayValues
              */
             $table->integer('frequency_value');
-            $table->integer('modifier');
+            $table->integer('frequency_modifier');
             $table->timestamps();
         });
     }
