@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\TaskInstanceController;
+use App\Http\Controllers\DevController;
 use Inertia\Inertia;
 
 Route::middleware(['auth', 'verified'])->group(function () {
@@ -25,4 +25,14 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/dev/props/null', function () {
         return Inertia::render('dev/Props', ['testProp' => null]);
     });
+
+    Route::get(
+        '/dev/frequency_set/',
+        [DevController::class, 'listFrequencySet']
+    );
+
+    Route::get(
+        '/dev/frequency_set/{frequencyRuleSet}',
+        [DevController::class, 'frequencySet']
+    );
 });

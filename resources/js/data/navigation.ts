@@ -21,7 +21,7 @@ export const mainNavItems : NavItem[] = [
         icon: BookText,
     },
     {
-        title: 'Dev',
+        title: 'DevController',
         href: dashboard(),
         icon: CodeXml,
     },
