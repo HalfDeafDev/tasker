@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Services\Components\CreationHandlers;
+namespace App\Services\ComponentCreation\CreationHandlers;
 
 use App\Enums\TaskComponentTypes;
 use App\Models\Contracts\HasTaskComponents;

@@ -22,7 +22,7 @@ return new class extends Migration
 
             // TaskDefinition | TaskInstance
             $table->uuidMorphs('component_owner');
-            // Components: DescriptionComponent | DueDateComponent
+            // ComponentCreation: DescriptionComponent | DueDateComponent
             $table->uuidMorphs('content');
 
             $table->integer('sort_order')->default(0);

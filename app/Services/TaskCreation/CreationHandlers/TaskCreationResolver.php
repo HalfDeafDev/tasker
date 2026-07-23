@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Services\Tasks\CreationHandlers;
+namespace App\Services\TaskCreation\CreationHandlers;
 
 use App\Models\TaskDefinition;
-use App\Services\Tasks\CreationHandlers\OneOffCreationHandler;
+use App\Services\TaskCreation\CreationHandlers\OneOffCreationHandler;
 
 class TaskCreationResolver
 {

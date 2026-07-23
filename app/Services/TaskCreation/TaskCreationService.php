@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Services\Tasks;
+namespace App\Services\TaskCreation;
 
 use App\Models\TaskDefinition;
 use App\Models\TaskInstance;
 use App\Models\User;
-use App\Services\Tasks\CreationHandlers\TaskCreationResolver;
+use App\Services\TaskCreation\CreationHandlers\TaskCreationResolver;
 
 class TaskCreationService
 {

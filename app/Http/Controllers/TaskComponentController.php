@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Enums\TaskComponentTypes;
 use App\Models\TaskDefinition;
 use App\Models\TaskInstance;
-use App\Services\Components\ComponentCreationService;
+use App\Services\ComponentCreation\ComponentCreationService;
 use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
 

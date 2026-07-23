@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Services\Tasks\CreationHandlers;
+namespace App\Services\TaskCreation\CreationHandlers;
 
 use App\Models\TaskDefinition;
 use App\Models\TaskInstance;
 use App\Models\User;
-use App\Services\Components\ComponentCreationService;
+use App\Services\ComponentCreation\ComponentCreationService;
 
 class OneOffCreationHandler implements CreatesTaskFromDefinition
 {

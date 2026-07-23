@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Enums\TaskTypes;
 use App\Models\TaskDefinition;
 use App\Models\TimeUnit;
-use App\Services\Tasks\TaskCreationService;
+use App\Services\TaskCreation\TaskCreationService;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 

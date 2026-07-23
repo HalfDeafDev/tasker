@@ -4,9 +4,9 @@ use Inertia\Inertia;
 
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::middleware(['auth', 'verified'])->group(function () {
-        /* Task Components */
+        /* Task ComponentCreation */
 
-        // Task Components - Description
+        // Task ComponentCreation - Description
         Route::post('component/create/description',
             [TaskComponentController::class, 'storeDescriptionComponent'])
             ->name('component.create.description');

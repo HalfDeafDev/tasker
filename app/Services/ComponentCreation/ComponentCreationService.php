@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Services\Components;
+namespace App\Services\ComponentCreation;
 
 use App\Enums\TaskComponentTypes;
 use App\Models\Contracts\HasTaskComponents;
 use App\Models\TaskComponent;
-use App\Services\Components\CreationHandlers\ComponentCreationResolver;
+use App\Services\ComponentCreation\CreationHandlers\ComponentCreationResolver;
 
 class ComponentCreationService
 {
