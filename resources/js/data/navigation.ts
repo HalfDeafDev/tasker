@@ -1,6 +1,7 @@
 import { BookText, CheckCheck, CodeXml, LayoutGrid } from 'lucide-vue-next';
 import { dashboard } from '@/routes';
 import { list as listDefinitions } from '@/routes/definitions';
+import { dashboard as devDashboard } from '@/routes/dev';
 import { list as listInstances } from '@/routes/instances';
 import type { NavItem } from '@/types';
 
@@ -21,8 +22,8 @@ export const mainNavItems : NavItem[] = [
         icon: BookText,
     },
     {
-        title: 'DevController',
-        href: dashboard(),
+        title: 'Dev',
+        href: devDashboard(),
         icon: CodeXml,
     },
 ]

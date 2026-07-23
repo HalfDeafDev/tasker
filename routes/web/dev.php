@@ -29,10 +29,10 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get(
         '/dev/frequency_set/',
         [DevController::class, 'listFrequencySet']
-    );
+    )->name('frequencySet.list');
 
     Route::get(
         '/dev/frequency_set/{frequencyRuleSet}',
         [DevController::class, 'frequencySet']
-    );
+    )->name('frequencySet.show');
 });

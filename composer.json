@@ -100,7 +100,8 @@
         ],
         "refresh-dev": [
             "@php artisan migrate:fresh --seed",
-            "@composer ide-helper"
+            "@composer ide-helper",
+            "@php artisan wayfinder:generate --with-form"
         ]
     },
     "extra": {

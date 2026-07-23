@@ -1,11 +1,5 @@
 <script setup lang="ts">
 import { Link } from '@inertiajs/vue3';
-import {
-    BookText,
-    CheckCheck,
-    CodeXml,
-    LayoutGrid,
-} from 'lucide-vue-next';
 import AppLogo from '@/components/AppLogo.vue';
 import NavFooter from '@/components/NavFooter.vue';
 import NavMain from '@/components/NavMain.vue';
